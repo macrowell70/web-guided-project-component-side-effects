@@ -9,6 +9,10 @@ import Friend from './Friend';
 
 export default function App() {
   const [friends, setFriends] = useState([])
+  /**
+   * const friends = friendsHook[0];
+   * const setFriends = friendsHook[1];
+   */
   const [currentFriendId, setCurrentFriendId] = useState(null)
 
   const openDetails = id => {
