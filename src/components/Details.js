@@ -7,10 +7,17 @@ export default function Details(props) {
   const [details, setDetails] = useState(null)
 
   // 👉 TASK 4 - Create a side effect 🥇 that runs only after first render.
+  useEffect(() => {
+    console.log("This page has rendered")
+  }, [])
 
   // 👉 TASK 5 - Create a side effect 👻 that runs only after first render
   // and puts a 'click' event handler on document.
   // See what happens if we don't clean up.
+  useEffect(() => {
+    console.log("Running after first render");
+  })
+
 
   // 👉 TASK 6 - Create a side effect 🥵 that runs after every render.
 
@@ -18,6 +25,14 @@ export default function Details(props) {
   // Whenever props.friendId updates we should trigger a fetch for details of the friend.
   // The URL should end up looking like `http://localhost:4000/friends/1?api_key=xyz`
   // On success, shove the details of the friend in `details` slice of state
+  useEffect(() => {
+    axios.get(`${BASE_URL}/friends/${friendId}?api_key=${API_KEY}`)
+    .then(res => {
+      setDetails(res.data);
+    }) .catch (err => {
+      console.error(err)
+    })
+  }, [friendId]) 
 
   return (
     <div className='container'>
